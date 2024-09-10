@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Behavioral Questions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgb(33, 35, 39);
+            color: #e0e0e0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #444;
+            text-align: left;
+        }
+        th {
+            background-color: #2a2a2a;
+            color: rgb(97, 158, 236);
+        }
+        .radio-cell {
+            width: 60px;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            color: rgb(97, 158, 236);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Roblox Behavioral Questions</h1>
+
+    <h2>Introduction</h2>
+    <p>In this section, you will be presented with 20 written scenarios, with each describing a different situation
+        followed by a series of response options. For each scenario, you will be asked to provide two responses: The
+        response that you believe is the most effective, and the response you believe is the least effective.</p>
+
+    <h2>Questions</h2>
+
+    <div id="questions-container"></div>
+
+    <script>
+        const questions = [
+            {
+                question: "You maintain a chat feature on a web application. Recently, malicious actors have been spamming the chat rapidly, intentionally causing server crashes. As you code a solution, you discover that the root cause of the issue is located in code managed by another team. Evaluate the options below and determine which course of action would be most effective in addressing the situation, and which would be least effective.",
+                options: [
+                    "Explain the issue to the other team, and suggest a fix if you know of one.",
+                    "Try to directly address the issue in the other team's code and submit your proposed changes for review.",
+                    "Spend another day or two looking for further improvements you can make to your own code, in case it turns out that you could fix the whole issue without modifying the other team's code.",
+                    "Leave the issue where it stands now that you have improved your own code to the extent possible, and move on to other work."
+                ]
+            },
+            {
+                question: "Your team is collaborating to build a new feature. Recently, you noticed an issue that you believe will negatively affect the user experience. You suspect that others have noticed the issue too, but no one has brought it up. Evaluate the options below and determine which course of action would be most effective in addressing the situation, and which would be least effective.",
+                options: [
+                    "Raise the issue with your whole team and come to a shared understanding of it, then plan a solution if appropriate.",
+                    "Proceed with your work as usual and don't mention the potential issue, since you may be wrong that it's even a problem at all.",
+                    "To spare your team the trouble, attempt to fix the issue directly without mentioning it to anyone.",
+                    "Mention the issue to one of your colleagues, and only bring more people into the conversation if your colleague agrees that it's important."
+                ]
+            },
+            {
+                question: "You have been given a task that involves understanding and modifying code written in a programming language that is unfamiliar to you. The task needs to be completed within the next few days. Consider the options below and determine which course of action would be most effective in addressing the situation, and which would be least effective.",
+                options: [
+                    "Identify a good beginner's programming course taught in the language you need to learn, and set aside time to go through the lessons.",
+                    "Focus on the section of code you need to work with, and gain familiarity with the language by comparing its features to those of languages you already know well.",
+                    "Carve out the functionality of the section you need to modify, and rewrite it in a language you already know.",
+                    "Ask a colleague to demonstrate how they would complete the task, and take notes so you can begin the task and make you better prepared to contribute next time."
+                ]
+            },
+            {
+                question: "Your team is working on a software development project utilizing a popular web development framework. You have been assigned the task of integrating this application with an existing system that operates on a different platform. To ensure smooth integration, you need to translate the logic and structure of a particular component into a format that is compatible with the target platform. Consider the options below and determine which course of action would be most effective in addressing the situation, and which would be least effective.",
+                options: [
+                    "Conduct a basic study of the component's internals and consult with an experienced team member to address any gaps in understanding during the porting process.",
+                    "Delegate the task to another team member who is already familiar with the target platform, without attempting to learn or understand the component's internals yourself.",
+                    "Research and understand the component's internals thoroughly before attempting the porting process, ensuring a deep understanding of the concepts involved.",
+                    "Rely on your current knowledge and online resources to guide you through the porting process, without dedicating much time to understanding all of the component's internals."
+                ]
+            },
+            {
+                question: "You recently joined an organization and are assigned to a project that is already in progress. The project includes various complex decisions and technical aspects that were made prior to your arrival. Curious about the overall objectives and contexts of these decisions, you choose to adopt a proactive approach in order to comprehend why these decisions were made and how they contribute to the project's overall goals. Consider the options below and determine which course of action would be most effective in addressing the situation, and which would be least effective.",
+                options: [
+                    "Focus on your coding tasks but skim through the documentation when you have spare time.",
+                    "Ask a coworker for a quick overview of the project's history and objectives, and then research on your own to fill in any gaps in your understanding.",
+                    "Divide your time between coding tasks and occasionally asking colleagues for information on the project's objectives when you have time.",
+                    "Organize a meeting with your senior colleagues and the project manager to discuss in-depth the project's history, objectives, and the reasons behind past decisions."
+                ]
+            },
+            {
+                question: "You have been assigned a project by a senior team member who just left for a two-week vacation, and you are expected to define and implement the project end-to-end. Other members of your team are available to provide feedback but they don't currently have the full context. Evaluate the options below and determine which course of action would be most effective in addressing the situation, and which would be least effective.",
+                options: [
+                    "Complete a full draft of the project to the best of your ability, and then wait for the senior team member to return from vacation and review your work before you publish it.",
+                    "Initiate the project right away, trusting your skills to navigate through without preliminary planning.",
+                    "Develop a rough plan and start the project, planning to revise things as necessary based on the senior team member's feedback when they return.",
+                    "Construct a plan keeping different scenarios in mind, and encourage teammates to give feedback during crucial stages."
+                ]
+            },
+            {
+                question: "You are a junior member of a team addressing an issue and need to test configuration changes for a specific group. The manager suggests building a new tool, but you believe there is a way to address this by combining two existing systems. Consider the options below and determine which course of action would be most effective in addressing the situation, and which would be least effective.",
+                options: [
+                    "Support your manager's suggestion of building a new tool while also expressing a cautious interest in further exploring alternative ideas.",
+                    "Suggest to the team that combining two existing systems might also be a solution, and also express your willingness to help with the new tool if the team decides to go that way.",
+                    "Share your idea with a colleague to get their opinion before bringing it up to the team.",
+                    "Given your position, accept that you may not have a complete understanding of the situation and focus on how you can support the manager's idea of building a new tool."
+                ]
+            },
+            {
+                question: "You are about to begin coding a new application. Ultimately, this application will need to interact with several other systems, and will be complex enough that you can't currently see how all the components will work together. Evaluate the options below and determine which course of action would be most effective in addressing the situation, and which would be least effective.",
+                options: [
+                    "Write a list of the application's components in the order you intend to build them.",
+                    "Read about the design of a similar system you are already familiar with.",
+                    "List out all the design requirements for the application, and make a diagram to map out the flow of the system as a whole.",
+                    "Start building the application, and be prepared to adjust course as you learn more about how the systems interact."
+                ]
+            },
+            {
+                question: "Your team manages a web application that is used internally at your company. You have been tasked with building a new feature for this application, and you are confused about how to build it. Evaluate the options below and determine which course of action would be most effective in addressing the situation, and which would be least effective.",
+                options: [
+                    "Actively work on finding solutions on your own and ask a colleague for advice if you reach a point where progress stalls.",
+                    "Reach out to a knowledgeable team member for a crash course on the essentials needed for constructing the feature.",
+                    "Seek out a more knowledgeable team member and ask them to handle the complex parts of the task for you.",
+                    "Focus all your attention on learning how to build the feature, trying your best not to impact the team's progress."
+                ]
+            },
+            {
+                question: "Your team's main project relies on multiple systems that other teams manage. These systems have all changed substantially in recent months, causing your own team's documentation to be out of date. Consider the options below and determine which course of action would be most effective in addressing the situation, and which would be least effective.",
+                options: [
+                    "Archive the current documentation to avoid misinforming users, and postpone rewriting it until the relevant systems stop changing.",
+                    "Request that the other teams update the relevant parts of your team's documentation and inform you once the updates are complete.",
+                    "Develop a deep understanding of the system interdependencies, and collaborate with the other teams to develop a system for keeping documentation up to date.",
+                    "Update the documentation to the best of your ability and set a monthly reminder to check if new updates are needed."
+                ]
+            },
+            {
+                question: "You arrive at work on a Friday morning and learn that there is a production outage on the application your team works on. Every hour the application stays down causes significant losses of revenue for the company. Evaluate the options below and determine which course of action would be most effective in addressing the situation, and which would be least effective.",
+                options: [
+                    "Coordinate with your team to work solely and continuously on this issue until it is fixed.",
+                    "Proceed with your day as you had originally planned, and trust that your team will resolve the outage.",
+                    "Offer to help resolve the production outage, but without losing sight of your original priorities for the day.",
+                    "Work hard on this issue with your team throughout the day, but be firm that you will sign off at your usual time to avoid burnout."
+                ]
+            },
+            {
+                question: "You are working on a project when a critical issue arises in an area outside your expertise. The issue is causing significant disruptions and the person responsible for handling such issues seems overwhelmed. You have some knowledge about the area but have never worked on it directly. Consider the options below and determine which course of action would be most effective in addressing the situation, and which would be least effective.",
+                options: [
+                    "You decide that you will learn about this field in the future, and offer your expertise on the parts of the problem you currently understand.",
+                    "You offer to assist with communications, supporting the person responsible while learning more about the issue.",
+                    "You inform the person handling the issue that you are available to help if needed, but continue working on your own tasks.",
+                    "You dig into the problem, researching and consulting with others to gain a deeper understanding, and share any insights you gain with the person in charge."
+                ]
+            },
+            {
+                question: "You have been assigned to manage the infrastructure for one of your team's products. This new responsibility will require you to use a complex tool you have never used before. You spend an afternoon reading documentation, and determine that learning to use the tool proficiently will require many more hours of study. The other members of your team already have full workloads. Evaluate the options below and determine which course of action would be most effective in addressing the situation, and which would be least effective.",
+                options: [
+                    "Move forward with your work and consult the tool's documentation whenever you get stuck.",
+                    "Allocate time in your schedule over the coming weeks to study the tool in a focused way.",
+                    "Ask your manager to reassign this responsibility to a team member who has some familiarity with the tool.",
+                    "Attempt to manage the product's infrastructure using a different tool that you are already familiar with."
+                ]
+            },
+            {
+                question: "For the past six months, you have been working on an infrastructure team, where most of your duties involve solving problems that have well-defined solutions. You have become more efficient in your role, to the point where you can easily manage your present responsibilities with time to spare. Consider the options below and determine which course of action would be most effective in addressing the situation, and which would be least effective.",
+                options: [
+                    "Focus on incrementally improving and fine-tuning your current projects.",
+                    "Ask other teams about their work to identify areas of collaboration and new project ideas.",
+                    "Engage in professional development activities like coursework or reading.",
+                    "Ask your manager to assign you an additional project or seek out projects where you can apply your skills."
+                ]
+            },
+            {
+                question: "You are about to begin implementing changes to the design of the user profile on a web application. You haven't been involved in any changes to the user profile before, and you know that its design has evolved over the past several years. Consider the options below and determine which course of action would be most effective in addressing the situation, and which would be least effective.",
+                options: [
+                    "Consult with everyone who has helped shape the user profile over the years to better understand the historical context of its design.",
+                    "Make a detailed plan for how you will implement your changes and share it with your manager.",
+                    "Identify the person with the most knowledge about how the user profile works and verify with them that the changes you are planning are acceptable.",
+                    "Start implementing your changes immediately and aim to finish the work as efficiently as possible."
+                ]
+            },
+            {
+                question: "You are responsible for key elements of a project and while working on a task, you identify a related bottleneck that is slowing down progress. You think you have a way to streamline the process and save time. Evaluate the options below and determine which course of action would be most effective in addressing the situation, and which would be least effective.",
+                options: [
+                    "Propose your solution to your manager and, if approved, implement and document your solution.",
+                    "Inform your colleagues about the bottleneck, hear their thoughts, and see whether they have other solutions.",
+                    "Postpone discussing the bottleneck with your team until you have time to implement your solution.",
+                    "Inform your manager about the bottleneck and request that someone else be assigned to fix it."
+                ]
+            },
+            {
+                question: "You have identified a recurring issue causing a system to crash, impacting user experience. Upon investigating, you find that the issue is intricate and might not be resolved with conventional methods. After extensive investigation and analysis, you devise an innovative solution that resolves the issue and prevents future occurrences, without adversely affecting other system components. Consider the options below and determine which course of action would be most effective in addressing the situation, and which would be least effective.",
+                options: [
+                    "Share your solution with a senior team member for feedback and write a document outlining the solution and risks, submitting it to your team.",
+                    "Write a report on the problem and solution, then ask a senior team member for guidance on the next steps.",
+                    "Report the issue to your manager and mention your idea, and then wait for further instructions.",
+                    "Record your solution in your personal notes for reflection, then bring up the idea with your team members in an informal setting to observe their reactions."
+                ]
+            },
+            {
+                question: "You are currently involved in a month-long rotation as an assistant with a team that mostly takes guidance from a senior team member. Your role involves assisting in resolving any obstacles that may arise. Lately, the team has been operating smoothly, leaving you with a considerable amount of free time. Consider the options below and determine which course of action would be most effective in addressing the situation, and which would be least effective.",
+                options: [
+                    "Ask the senior team member if there are any tasks that need to be completed.",
+                    "Focus on personal development and training while you wait for the senior team member to assign you a task.",
+                    "Identify an area of work that needs more attention and form a plan for contributing to it.",
+                    "Offer assistance to team members who may be struggling with their tasks."
+                ]
+            },
+            {
+                question: "You are part of the product development team, responsible for creating roadmaps and liaising with stakeholders. You need to create a roadmap for a large project with multiple stakeholders, but you have limited experience in creating roadmaps for projects of this scale and are struggling to clearly define the deliverables. Consider the options below and determine which course of action would be most effective in addressing the situation, and which would be least effective.",
+                options: [
+                    "Draft an initial roadmap and try to improve it by trial and error, aiming to avoid negative feedback from team members and stakeholders.",
+                    "Borrow templates of roadmaps from other project managers and structure yours based on those.",
+                    "Communicate the difficulties you are having to the project's stakeholders and request that they provide a rough outline for you to expand on.",
+                    "Draft an initial road map, and engage in open and constructive discussions with team members and stakeholders to identify areas of improvement."
+                ]
+            },
+            {
+                question: "You have just joined a new team where your day-to-day work will involve regularly querying a complex database. You have just started learning about how the database is structured, and your initial impression is that there are some flaws in its design. Consider the options below and determine which course of action would be most effective in addressing the situation, and which would be least effective.",
+                options: [
+                    "Wait to see whether one of your teammates explains the database structure in more depth, and if they don't, assume the design can't be changed.",
+                    "Point out the design flaws you perceive to your new teammates, and suggest any improvements you can think of.",
+                    "Start using the database and wait to see whether its design seems more reasonable after you've gained some experience using it.",
+                    "Ask lots of questions to develop a strong understanding of why the database is designed the way it is, then propose changes if appropriate."
+                ]
+            }
+        ];
+
+        function createQuestionHTML(question, index) {
+            let html = `<h3>Question ${index + 1}</h3>`;
+            html += `<p>${question.question}</p>`;
+            html += '<table>';
+            html += '<tr><th>Options</th><th>Most Effective</th><th>Least Effective</th></tr>';
+            question.options.forEach((option, optionIndex) => {
+                html += `
+                    <tr>
+                        <td>${option}</td>
+                        <td class="radio-cell">
+                            <input type="radio" name="q${index + 1}_most" value="${optionIndex + 1}">
+                        </td>
+                        <td class="radio-cell">
+                            <input type="radio" name="q${index + 1}_least" value="${optionIndex + 1}">
+                        </td>
+                    </tr>
+                `;
+            });
+            html += '</table>';
+            return html;
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questions-container');
+            questions.forEach((question, index) => {
+                container.innerHTML += createQuestionHTML(question, index);
+            });
+        }
+
+        function initializeRadioButtons() {
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    saveState();
+                });
+            });
+        }
+
+        function saveState() {
+            const state = {};
+            document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
+                state[radio.name] = radio.value;
+            });
+            localStorage.setItem('behavioralQuestionsState', JSON.stringify(state));
+        }
+
+        function loadState() {
+            const savedState = localStorage.getItem('behavioralQuestionsState');
+            if (savedState) {
+                const state = JSON.parse(savedState);
+                Object.entries(state).forEach(([name, value]) => {
+                    const radio = document.querySelector(`input[name="${name}"][value="${value}"]`);
+                    if (radio) {
+                        radio.checked = true;
+                    }
+                });
+            }
+        }
+
+        renderQuestions();
+        initializeRadioButtons();
+        loadState();
+    </script>
+</body>
+
+</html>
